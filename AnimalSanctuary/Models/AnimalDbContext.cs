@@ -13,8 +13,8 @@ namespace AnimalSanctuary.Models
 
         }
 
-        public DbSet<Animal> Animals { get; set; }
-        public DbSet<Vetrinarian> Vetrinarians { get; set; }
+        public virtual DbSet<Animal> Animals { get; set; }
+        public virtual DbSet<Vetrinarian> Vetrinarians { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

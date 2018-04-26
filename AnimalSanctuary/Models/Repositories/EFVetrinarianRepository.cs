@@ -8,7 +8,15 @@ namespace AnimalSanctuary.Models
 {
     public class EFVetrinarianRepository : IVetrinarianRepository
     {
-        AnimalDbContext db = new AnimalDbContext();
+        AnimalDbContext db;
+        public EFVetrinarianRepository()
+        {
+            db = new AnimalDbContext();
+        }
+        public EFVetrinarianRepository(AnimalDbContext thisDb)
+        {
+            db = thisDb;
+        }
 
         public IQueryable<Vetrinarian> Vetrinarians
         { get { return db.Vetrinarians; } }
@@ -31,6 +39,10 @@ namespace AnimalSanctuary.Models
         {
             db.Vetrinarians.Remove(vetrinarian);
             db.SaveChanges();
+        }
+        public void ClearAll()
+        {
+            db.Vetrinarians.RemoveRange(db.Vetrinarians.ToList());
         }
         
     }

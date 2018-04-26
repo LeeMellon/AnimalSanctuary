@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using AnimalSanctuary.Controllers;
 using AnimalSanctuary.Models;
 using Moq;
+using AnimalSanctuary.Tests.Models;
 
 namespace AnimalSanctuary.Tests.ControllerTests
 {
@@ -13,6 +14,7 @@ namespace AnimalSanctuary.Tests.ControllerTests
     public class AnimalsControllerTest
     {
         private Mock<IAnimalRepository> mock = new Mock<IAnimalRepository>();
+        EFAnimalRepository db = new EFAnimalRepository(new TestDbContext());
         private void DbSetup()
         {
             mock.Setup(m => m.Animals).Returns(new Animal[]
@@ -97,6 +99,24 @@ namespace AnimalSanctuary.Tests.ControllerTests
             // Assert
             Assert.IsInstanceOfType(resultView, typeof(ViewResult));
             Assert.IsInstanceOfType(model, typeof(Animal));
+        }
+
+        [TestMethod]
+        public void DB_CreatesNewEntries_Collection()
+        {
+            //Arrange
+            AnimalsController controller = new AnimalsController(db);
+            Animal animal = new Animal
+            {
+                Name = "Kreiger"
+            };
+
+            //Act
+            controller.Create(animal);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Animal>;
+
+            //Assert
+            CollectionAssert.Contains(collection, animal);
         }
     }
 }
