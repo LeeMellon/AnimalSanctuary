@@ -26,7 +26,7 @@ namespace AnimalSanctuary.Tests.ControllerTests
 
         public void Dispose()
         {
-            Vetrinarian.ClearAll();
+           db.ClearAll();
         }
         
         [TestMethod]
