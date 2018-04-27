@@ -11,5 +11,6 @@ namespace AnimalSanctuary.Models
         Vetrinarian Save ( Vetrinarian vetrinarian );
         Vetrinarian Edit ( Vetrinarian vetrinarian );
         void Remove ( Vetrinarian vetrinarian );
+        void ClearAll();
     }
 }

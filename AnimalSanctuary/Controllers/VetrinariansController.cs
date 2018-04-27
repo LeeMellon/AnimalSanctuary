@@ -71,5 +71,6 @@ namespace AnimalSanctuary.Controllers
             VetrinarianRepo.Remove(VetrinarianRepo.Vetrinarians.FirstOrDefault(x => x.VetrinarianId == id));
             return RedirectToAction("Index");
         }
+
     }
 }

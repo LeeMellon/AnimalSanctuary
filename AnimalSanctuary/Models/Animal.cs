@@ -21,26 +21,27 @@ namespace AnimalSanctuary.Models
         public string HabitatType { get; set; }
         public bool MedicalEmergency { get; set; }
         public int VetrinarianId { get; set; }
-        public virtual Vetrinarian Vetrinarian { get; set;}
+        public virtual Vetrinarian Vetrinarian { get; set; }
 
         public override bool Equals(System.Object otherAnimal)
-    {
-        if (!(otherAnimal is Animal))
         {
-            return false;
+            if (!(otherAnimal is Animal))
+            {
+                return false;
+            }
+            else
+            {
+                Animal newAnimal = (Animal)otherAnimal;
+                return this.AnimalId.Equals(newAnimal.AnimalId);
+            }
         }
-        else
+
+        public override int GetHashCode()
         {
-            Animal newAnimal = (Animal)otherAnimal;
-            return this.AnimalId.Equals(newAnimal.AnimalId);
+            return this.AnimalId.GetHashCode();
         }
-    }
 
-    public override int GetHashCode()
-    {
-        return this.AnimalId.GetHashCode();
-    }
-    }
 
+    }
 
 }

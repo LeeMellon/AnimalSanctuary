@@ -40,9 +40,11 @@ namespace AnimalSanctuary.Models
             db.Vetrinarians.Remove(vetrinarian);
             db.SaveChanges();
         }
+
         public void ClearAll()
         {
-            db.Vetrinarians.RemoveRange(db.Vetrinarians.ToList());
+            db.Vetrinarians.RemoveRange(db.Vetrinarians);
+            db.SaveChanges();
         }
         
     }

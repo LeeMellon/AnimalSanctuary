@@ -11,7 +11,7 @@ using AnimalSanctuary.Tests.Models;
 namespace AnimalSanctuary.Tests.ControllerTests
 {   
     [TestClass]
-    public class VetrinarianControllerTests
+    public class VetrinarianControllerTests : IDisposable
     {
         private Mock<IVetrinarianRepository> mock = new Mock<IVetrinarianRepository>();
         EFVetrinarianRepository db = new EFVetrinarianRepository(new TestDbContext());
@@ -24,6 +24,11 @@ namespace AnimalSanctuary.Tests.ControllerTests
             }.AsQueryable());
         }
 
+        public void Dispose()
+        {
+            Vetrinarian.ClearAll();
+        }
+        
         [TestMethod]
         public void Mock_GetViewResultIndex_ActionResult()
        {

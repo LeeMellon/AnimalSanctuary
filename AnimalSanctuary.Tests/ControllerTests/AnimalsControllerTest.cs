@@ -24,6 +24,11 @@ namespace AnimalSanctuary.Tests.ControllerTests
                 }.AsQueryable());
         }
 
+        public void Dispose()
+        {
+            db.ClearAll();
+        }
+
         [TestMethod]
         public void Mock_GetViewResultIndex_ActionResult() // Confirms route returns view
         {
